@@ -8,92 +8,121 @@
     <script src=
 "https://code.jquery.com/jquery-3.5.1.js">
     </script>
-  
-    <!-- CSS FOR STYLING THE PAGE -->
-    <style>
-        table {
-            margin: 0 auto;
-            font-size: large;
-            border: 1px solid black;
-        }
-  
-        h1 {
-            text-align: center;
-            color: #006600;
-            font-size: xx-large;
-            font-family: 'Gill Sans', 
-                'Gill Sans MT', ' Calibri', 
-                'Trebuchet MS', 'sans-serif';
-        }
-  
-        td {
-            background-color: #E4F5D4;
-            border: 1px solid black;
-        }
-  
-        th,
-        td {
-            font-weight: bold;
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-  
-        td {
-            font-weight: lighter;
-        }
-    </style>
 </head>
-  
+
 <body>
-    <section>
-        <h1>GeeksForGeeks</h1>
-  
-        <!-- TABLE CONSTRUCTION-->
-        <table id='table'>
-            <!-- HEADING FORMATION -->
-            <tr>
-                <th>GFG UserHandle</th>
-                <th>Practice Problems</th>
-                <th>Coding Score</th>
-                <th>GFG Articles</th>
-            </tr>
-  
-            <script>
-                $(document).ready(function () {
-  
-                    // FETCHING DATA FROM JSON FILE
-                    $.getJSON("personData.json", 
-                            function (data) {
-                        var student = '';
-  
-                        // ITERATING THROUGH OBJECTS
-                        $.each(data, function (key, value) {
-  
-                            //CONSTRUCTION OF ROWS HAVING
-                            // DATA FROM JSON OBJECT
-                            student += '<tr>';
-                            student += '<td>' + 
-                                value.GFGUserName + '</td>';
-  
-                            student += '<td>' + 
-                                value.NoOfProblems + '</td>';
-  
-                            student += '<td>' + 
-                                value.TotalScore + '</td>';
-  
-                            student += '<td>' + 
-                                value.Articles + '</td>';
-  
-                            student += '</tr>';
-                        });
-                          
-                        //INSERTING ROWS INTO TABLE 
-                        $('#table').append(student);
-                    });
-                });
-            </script>
-    </section>
+    <h2>Creating an Object from a JSON String</h2>
+    <h1 id="header">NOTHING HERE YET</h1>
+    <h1 id="header2">HELLO</h1>
+    <button onclick="myFunction2()">Click it</button>
+
+    <input id="inputUserId" type="number">
+    <input id="inputPassword" type="text">
+    <button onclick="myFunction()">Try it</button>
+    <h2 id="demo"></h2>
+
+    <script type="text/javascript" src="personData.json"></script> 
+<script>
+    function myFunction2() {
+        var inputUserId = document.getElementById("inputUserId").value;
+        var inputPassword = document.getElementById("inputPassword").value;
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+                var data = JSON.parse(xhttp.responseText);
+                // document.getElementById("header").innerHTML = data.name;
+
+                let txt = "";
+                let count = 0;
+                let index = -1;
+
+                // Checking whether id is present in json
+                for(var i = 0; i < data.length; i++) {
+                    if(inputUserId === data[i].id){
+                        count = 1;
+                        index = i;
+
+                    }
+                }
+                if(count === 1){
+                        if(inputPassword === data[index].password){
+                            txt = data[index].amount;
+                        } else {
+                            txt = "Invaid Credentials!";
+                        }
+
+
+                        // console.log(obj.id);    
+                }
+                else{
+                    txt = "No Such User found";
+                }
+                        
+                document.getElementById("header").innerHTML = txt;
+            } else{
+                document.getElementById("header").innerHTML = "sorry! ERROR";
+            }
+            
+        }
+        xhttp.open("GET","personData.json",true);
+        xhttp.send();
+        document.getElementById("header2").innerHTML = "hi";
+    }
+
+    function myFunction() {
+        var inputUserId = document.getElementById("inputUserId").value;
+        var inputPassword = document.getElementById("inputPassword").value;
+        // var person= personData; 
+
+//         fetch("./personData.json")
+// .then(response => {
+//    return response.json();
+// })
+// .then(jsondata => console.log(jsondata));
+
+var person = [{
+    "id" : "1", 
+    "name"   : "supreet",
+    "password" : "supreet1",
+    "amount": "2000"
+},
+{
+    "id" : "2", 
+    "name"   : "nitesh",
+    "password" : "nitesh1",
+    "amount": "1000"
+}];
+
+let txt = "";
+let count = 0;
+let index = -1;
+
+// Checking whether id is present in json
+for(var i = 0; i < person.length; i++) {
+    if(inputUserId === person[i].id){
+        count = 1;
+        index = i;
+
+    }
+}
+if(count === 1){
+        if(inputPassword === person[index].password){
+            txt = person[index].amount;
+        } else {
+            txt = "Invaid Credentials!";
+        }
+
+
+        // console.log(obj.id);    
+}
+else{
+    txt = "No Such User found";
+}
+document.getElementById("demo").innerHTML = txt;
+    }
+</script>
+    
 </body>
   
 </html>
