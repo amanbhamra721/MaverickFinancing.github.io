@@ -3,23 +3,67 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>INDEX</title>
+	<title>HOMEPAGE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+  body,h1 {font-family: "Raleway", sans-serif}
+  body, html {height: 100%}
+  body
+  {
+    background-image: url("dashboard_background.jpg");
+    background-size: 100% 100%;
+    color: white;
+    overflow: hidden
+  }
+  .bgimg {
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+  }
+  .container{position: relative;
+    width: 300px;
+    height: 200px;
+  }
+  .block {
+    background-color: black;
+    opacity: 0.5;
+  }
+  .text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .b_logout{position: absolute;left: 1150px;top: 22px;font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;line-height: 34px;color: black;font-size: 25px}
+  .b_login{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;color: black;font-size: 25px}
+  .square {padding: 50px; margin: 150px; margin-top: 20px; text-align: center; background: rgba(0, 0, 0, .5)    /*  40% opaque green */}
+  .heading_center{font-family: "Raleway", sans-serif; text-align: center;}
+  </style>
 </head>
 <body>
-<h1>HELLO WORLD!!</h1>
-<a href="signup.php">SIGNUP</a>
-<a href="login.php">LOGIN</a>
-<a href="/MaverickFinancing.github.io/try.php">TRY</a>
-<br><br>
-<a href="/MaverickFinancing.github.io/try1.html">TRY1 PAGE</a>
-<br><br>
-<h1 id="checkingTrueFalse">HOMEPAGE</h1>
+<h1 class="heading_center">MAVERICK FINANCING</h1>
+<br>
+<!-- <a href="/MaverickFinancing.github.io/try1.html">TRY1 PAGE</a> -->
 
-    <input id="inputUserId" type="number">
-    <input id="inputPassword" type="text">
-    <button onclick="myFunction()">LOGIN</button>
+    
     <h2 id="demo"></h2>
 
+    <div class="square">
+      <input id="inputUserId" type="number">
+      <input id="inputPassword" type="text"><br><br>
+      <button class='b_login' onclick="myFunction()">LOGIN</button>
+      <h1 class="w3-jumbo w3-animate-top">DASHBOARD</h1>;
+      <hr class="w3-border-grey" style="margin:auto;width:40%">
+      
+         <br><br><br>
+         <h2>YOU INVESTED :</h2>
+         <h2>YOUR PROFIT :</h2>
+      
+    </div>
 	<script>
 		function myFunction() {
 			var inputUserId = document.getElementById("inputUserId").value;
@@ -33,7 +77,7 @@
 					let txt = "";
 					let count = 0;
 					let index = -1;
-					let flag = false;
+					// let flag = false;    Used if I need to redirect to a new page
 	
 					// Checking whether id is present in json
 					for(var i = 0; i < data.length; i++) {
@@ -46,7 +90,7 @@
 					if(count === 1){
 							if(inputPassword === data[index].password){
 								txt = data[index].amount;
-								flag = true;
+								// flag = true;
 							} else {
 								txt = "Invaid Credentials!";
 							}
@@ -56,9 +100,9 @@
 						txt = "No Such User found";
 					}
 					document.getElementById("demo").innerHTML = txt;
-					if(flag === true){
-						window.location.replace('/MaverickFinancing.github.io/try1.html');
-					}
+					// if(flag === true){
+					// 	window.location.replace('/MaverickFinancing.github.io/try1.html');
+					// }
 				} else{
 					document.getElementById("demo").innerHTML = "sorry! ERROR";
 				}
