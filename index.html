@@ -14,5 +14,56 @@
 <a href="/MaverickFinancing.github.io/try1.html">TRY1 PAGE</a>
 <br><br>
 <h1>HOMEPAGE</h1>
+
+<button onclick="myFunction()">Click it</button>
+
+    <input id="inputUserId" type="number">
+    <input id="inputPassword" type="text">
+    <button onclick="myFunction()">LOGIN</button>
+    <h2 id="demo"></h2>
+
+	<script>
+		function myFunction() {
+			var inputUserId = document.getElementById("inputUserId").value;
+			var inputPassword = document.getElementById("inputPassword").value;
+	
+			let xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if(xhttp.readyState==4 && xhttp.status==200){
+					var data = JSON.parse(xhttp.responseText);
+	
+					let txt = "";
+					let count = 0;
+					let index = -1;
+	
+					// Checking whether id is present in json
+					for(var i = 0; i < data.length; i++) {
+						if(inputUserId === data[i].id){
+							count = 1;
+							index = i;
+	
+						}
+					}
+					if(count === 1){
+							if(inputPassword === data[index].password){
+								txt = data[index].amount;
+							} else {
+								txt = "Invaid Credentials!";
+							}
+	
+					}
+					else{
+						txt = "No Such User found";
+					}
+					document.getElementById("demo").innerHTML = txt;
+				} else{
+					document.getElementById("demo").innerHTML = "sorry! ERROR";
+				}
+			}
+			xhttp.open("GET","personData.json",true);
+			xhttp.send();
+			document.getElementById("demo").innerHTML = "hi";
+		}
+	</script>
 </body>
 </html>
