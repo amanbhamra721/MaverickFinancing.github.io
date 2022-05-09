@@ -38,46 +38,71 @@
     width: 100%;
     height: 100%;
   }
+  input[type=text]:focus {
+  border: 3px solid #FF00FF;
+  text-align: left;
+    margin-top: 100px;
+}input[type=number]:focus {
+  border: 3px solid #FF00FF;
+  text-align: left;
+    margin-top: 100px;
+}input {
+  text-align: left;
+  margin-top: 100px;
+}
   .b_logout{position: absolute;left: 1150px;top: 22px;font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;line-height: 34px;color: black;font-size: 25px}
-  .b_login{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;color: black;font-size: 25px}
-  .square {padding: 50px; margin: 150px; margin-top: 20px; text-align: center; background: rgba(0, 0, 0, .5)    /*  40% opaque green */}
+  .b_login{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;color: black;font-size: 25px; background:#FF00FF; align-self: center;}
+  .square {padding: 50px; margin: 150px; margin-top: 0px; text-align: center; background: rgba(0, 0, 0, .5)    /*  40% opaque green */}
   .heading_center{font-family: "Raleway", sans-serif; text-align: center;}
+  .dashboard{font-family: "Raleway", sans-serif;align-self: center;text-align: center;z-index:100;}
   </style>
 </head>
 <body>
-<h1 class="heading_center">MAVERICK FINANCING</h1>
+<h1 id="header" class="heading_center">MAVERICK FINANCING</h1>
 <br>
 <!-- <a href="/MaverickFinancing.github.io/try1.html">TRY1 PAGE</a> -->
 
     
-    <h2 id="demo"></h2>
-
     <div class="square">
-      <input id="inputUserId" type="number">
-      <input id="inputPassword" type="text"><br><br>
-      <button class='b_login' onclick="myFunction()">LOGIN</button>
-      <h1 class="w3-jumbo w3-animate-top">DASHBOARD</h1>;
-      <hr class="w3-border-grey" style="margin:auto;width:40%">
+      
+      <input id="inputUserId" type="number" placeholder="User Id">
+      <input id="inputPassword" class="input" type="text" placeholder="Password"><br><br>
+      <button id="login" class="b_login" onclick="myFunction()">LOGIN</button><br>
+      <h2 id="demo"></h2>
+      <h1 id="dashboard_text" class="dashboard">DASHBOARD</h1>
+      <hr id="border_underline" class="w3-border-grey" style="margin:auto;width:40%">
       
          <br><br><br>
-         <h2>YOU INVESTED :</h2>
-         <h2>YOUR PROFIT :</h2>
+         <h2 id="invested">YOU INVESTED :</h2>
+         <h2 id="profit">YOUR PROFIT :</h2>
       
     </div>
 	<script>
+    // Setting visibility
+    let flag = false;
+    if(flag === false){
+      //WHEN USER HAS NOT LOGGED IN
+      document.getElementById('dashboard_text').style.visibility = 'hidden';
+      document.getElementById('border_underline').style.visibility = 'hidden';
+      document.getElementById('invested').style.visibility = 'hidden';
+      document.getElementById('profit').style.visibility = 'hidden';
+    }
+    
+
 		function myFunction() {
+    
 			var inputUserId = document.getElementById("inputUserId").value;
 			var inputPassword = document.getElementById("inputPassword").value;
-	
+
 			let xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function(){
 				if(xhttp.readyState==4 && xhttp.status==200){
 					var data = JSON.parse(xhttp.responseText);
-	
+
 					let txt = "";
 					let count = 0;
 					let index = -1;
-					// let flag = false;    Used if I need to redirect to a new page
+					// let flag = false;    //Used if I need to redirect to a new page
 	
 					// Checking whether id is present in json
 					for(var i = 0; i < data.length; i++) {
@@ -90,7 +115,7 @@
 					if(count === 1){
 							if(inputPassword === data[index].password){
 								txt = data[index].amount;
-								// flag = true;
+								flag = true;
 							} else {
 								txt = "Invaid Credentials!";
 							}
@@ -100,9 +125,21 @@
 						txt = "No Such User found";
 					}
 					document.getElementById("demo").innerHTML = txt;
-					// if(flag === true){
-					// 	window.location.replace('/MaverickFinancing.github.io/try1.html');
-					// }
+					if(flag === true){
+            document.getElementById('dashboard_text').style.visibility = 'visible';
+            document.getElementById('border_underline').style.visibility = 'visible';
+            document.getElementById('invested').style.visibility = 'visible';
+            document.getElementById('profit').style.visibility = 'visible';
+
+            // elem.style.display = 'none';
+            document.getElementById('inputUserId').style.display = 'none';
+            document.getElementById('inputPassword').style.display = 'none';
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('demo').style.display = 'none';
+            // window.location.replace('/MaverickFinancing.github.io/try1.html');
+            document.getElementById("invested").innerHTML = "YOU INVESTED :"+txt;
+            document.getElementById("profit").innerHTML = "YOUR PROFIT :"+txt;
+          }
 				} else{
 					document.getElementById("demo").innerHTML = "sorry! ERROR";
 				}
