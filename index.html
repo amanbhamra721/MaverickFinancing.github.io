@@ -13,7 +13,7 @@
 <br><br>
 <a href="/MaverickFinancing.github.io/try1.html">TRY1 PAGE</a>
 <br><br>
-<h1>HOMEPAGE</h1>
+<h1 id="checkingTrueFalse">HOMEPAGE</h1>
 
     <input id="inputUserId" type="number">
     <input id="inputPassword" type="text">
@@ -56,17 +56,15 @@
 						txt = "No Such User found";
 					}
 					document.getElementById("demo").innerHTML = txt;
+					if(flag === true){
+						window.location.replace('/MaverickFinancing.github.io/try1.html');
+					}
 				} else{
 					document.getElementById("demo").innerHTML = "sorry! ERROR";
 				}
 			}
 			xhttp.open("GET","personData.json",true);
 			xhttp.send();
-			document.getElementById("demo").innerHTML = txt;
-
-			if(flag === true){
-				window.location.replace('/MaverickFinancing.github.io/try1.html');
-			}
 		}
 	</script>
 </body>
