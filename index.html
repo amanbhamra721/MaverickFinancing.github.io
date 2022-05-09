@@ -15,8 +15,6 @@
 <br><br>
 <h1>HOMEPAGE</h1>
 
-<button onclick="myFunction()">Click it</button>
-
     <input id="inputUserId" type="number">
     <input id="inputPassword" type="text">
     <button onclick="myFunction()">LOGIN</button>
@@ -35,6 +33,7 @@
 					let txt = "";
 					let count = 0;
 					let index = -1;
+					let flag = false;
 	
 					// Checking whether id is present in json
 					for(var i = 0; i < data.length; i++) {
@@ -47,6 +46,7 @@
 					if(count === 1){
 							if(inputPassword === data[index].password){
 								txt = data[index].amount;
+								flag = true;
 							} else {
 								txt = "Invaid Credentials!";
 							}
@@ -62,7 +62,11 @@
 			}
 			xhttp.open("GET","personData.json",true);
 			xhttp.send();
-			document.getElementById("demo").innerHTML = "hi";
+			document.getElementById("demo").innerHTML = txt;
+
+			if(flag === true){
+				window.location.replace('/MaverickFinancing.github.io/try1.html');
+			}
 		}
 	</script>
 </body>
