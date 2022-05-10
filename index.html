@@ -24,8 +24,8 @@
     background-size: cover;
   }
   .container{position: relative;
-    width: 300px;
-    height: 200px;
+    /* width: 300px;
+    height: 200px; */
   }
   .block {
     background-color: black;
@@ -41,18 +41,20 @@
   input[type=text]:focus {
   border: 3px solid #FF00FF;
   text-align: left;
-    margin-top: 100px;
+    /* margin-top: 100px; */
 }input[type=number]:focus {
   border: 3px solid #FF00FF;
   text-align: left;
-    margin-top: 100px;
+    /* margin-top: 100px; */
 }input {
   text-align: left;
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
   .b_logout{position: absolute;left: 1150px;top: 22px;font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;line-height: 34px;color: black;font-size: 25px}
   .b_login{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 30px;color: black;font-size: 25px; background:#FF00FF; align-self: center;}
-  .square {padding: 50px; margin: 150px; margin-top: 0px; text-align: center; background: rgba(0, 0, 0, .5)    /*  40% opaque green */}
+  .square {
+    /* padding: 50px; margin: 150px; margin-top: 0px;  */
+    text-align: center; background: rgba(0, 0, 0, .5)    /*  40% opaque green */}
   .heading_center{font-family: "Raleway", sans-serif; text-align: center;}
   .dashboard{font-family: "Raleway", sans-serif;align-self: center;text-align: center;z-index:100;}
   </style>
@@ -64,7 +66,7 @@
 
     
     <div class="square">
-      
+      <br><br>
       <input id="inputUserId" type="number" placeholder="User Id">
       <input id="inputPassword" class="input" type="text" placeholder="Password"><br><br>
       <button id="login" class="b_login" onclick="myFunction()">LOGIN</button><br>
@@ -75,6 +77,7 @@
          <br><br><br>
          <h2 id="invested">YOU INVESTED :</h2>
          <h2 id="profit">YOUR PROFIT :</h2>
+         <br><br>
       
     </div>
 	<script>
