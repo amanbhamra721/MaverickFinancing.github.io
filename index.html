@@ -103,6 +103,7 @@
 					var data = JSON.parse(xhttp.responseText);
 
 					let txt = "";
+          let profit = "";
 					let count = 0;
 					let index = -1;
 					// let flag = false;    //Used if I need to redirect to a new page
@@ -118,6 +119,7 @@
 					if(count === 1){
 							if(inputPassword === data[index].password){
 								txt = data[index].amount;
+                profit = data[index].profit;
 								flag = true;
 							} else {
 								txt = "Invaid Credentials!";
@@ -141,7 +143,7 @@
             document.getElementById('demo').style.display = 'none';
             // window.location.replace('/MaverickFinancing.github.io/try1.html');
             document.getElementById("invested").innerHTML = "YOU INVESTED : "+txt;
-            document.getElementById("profit").innerHTML = "YOUR PROFIT : 0";
+            document.getElementById("profit").innerHTML = "YOUR PROFIT : "+profit;
           }
 				} else{
 					document.getElementById("demo").innerHTML = "sorry! ERROR";
